@@ -20,8 +20,9 @@ class SwipeCardFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_swipe_card, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    // This is the fragment for the viewpager where we add the text file from Parcelable arguments
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey(ARG_CARD_DATA) }?.apply {
             title_text.text = getParcelable<CardData>(ARG_CARD_DATA)!!.text
         }

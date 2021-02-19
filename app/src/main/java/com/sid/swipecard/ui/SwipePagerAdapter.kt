@@ -7,12 +7,16 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.sid.swipecard.data.CardData
 import com.sid.swipecard.util.ARG_CARD_DATA
 
+// This is the PagerAdapter for the ViewPager.
+
 class SwipePagerAdapter(
     val listOfPagerContents: List<CardData>,
     fm: FragmentManager,
     behavior: Int
 ) : FragmentStatePagerAdapter(fm, behavior) {
 
+
+    // Here we add the CardData as the arguments for Fragment which will be shown in viewpager.
     override fun getItem(position: Int): Fragment {
         val fragment = SwipeCardFragment()
 
