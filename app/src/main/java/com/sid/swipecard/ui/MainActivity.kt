@@ -27,10 +27,15 @@ class MainActivity : AppCompatActivity() {
         apiInterface = ApiUtil.provideRetrofit().create(ApiInterface::class.java)
 
         setUpDataSource()
-        //setUpView()
         getCardData()
 
     }
+
+    private fun setUpDataSource() {
+        getCardData()
+    }
+
+    // IN this method Viewpager and Tablayout is initiated.
 
     private fun setUpView() {
         var swipePagerAdapter =
@@ -44,9 +49,8 @@ class MainActivity : AppCompatActivity() {
         main_layout.visibility = View.VISIBLE
     }
 
-    private fun setUpDataSource() {
-        getCardData()
-    }
+
+    // This method makes the API Call
 
     fun getCardData() {
         val genreResponseCall: Call<String?>? = apiInterface!!.makeGetCardData()
@@ -66,23 +70,20 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                t.message?.let { Log.d("jsfjsdf", it) }
                 main_progress_bar.visibility = View.GONE
                 no_data_text.visibility = View.VISIBLE
             }
         })
     }
 
+
+    // This method is used for parsing the JSON data and converting to CardResponse class. It also remove the unwanted values from the String Json.
+
     private fun setListData(response: String) {
         var resString: String? = response
 
         resString = resString?.replace("/", "")
         resString = resString?.replace("\\<[^>]*>", "")
-
-/*
-                        val gson = Gson()
-                        val reader = JsonReader(StringReader(resString))
-                        reader.setLenient(true)*/
 
         var cardResponse: CardResponse =
             Gson().fromJson(resString, CardResponse::class.java)
