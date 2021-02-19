@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
+//This is the POJO class which is made as per the JSON of the API response
 class CardData() : Parcelable{
     @SerializedName("id")
     @Expose
