@@ -10,6 +10,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiUtil {
+
+    // This method is use to initiate and build the httpclient for the Retrofit builder
+
     private fun provideOkhttpClient(): OkHttpClient {
         val client = OkHttpClient.Builder()
             .connectTimeout(
@@ -22,6 +25,8 @@ object ApiUtil {
             )
         return client.build()
     }
+
+    // This method is use to initiate and build the Retrofit builder.
 
     fun provideRetrofit(): Retrofit {
         val okHttpClient =
